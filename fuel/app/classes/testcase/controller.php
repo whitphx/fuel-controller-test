@@ -68,6 +68,6 @@ class TestCase_Controller extends \TestCase
 	
 	protected function emulate_logged_out()
 	{
-		\Auth::login();
+		\Auth::logout();
 	}
 }
