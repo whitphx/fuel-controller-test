@@ -70,6 +70,12 @@ class_alias('Fuel\\Core\\Autoloader', 'Autoloader');
 // Boot the app
 require_once APPPATH.'bootstrap.php';
 
+Autoloader::add_classes(array(
+	'Auth_Login_Simpleauth' => APPPATH.'classes/testcase/auth/login/simpleauth.php',
+	'TestCase_Controller' => APPPATH.'classes/testcase/controller.php',
+	'TestRedirectException' => APPPATH.'classes/testcase/controller.php',
+));
+
 // Set test mode
 Fuel::$is_test = true;
 
