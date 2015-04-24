@@ -22,6 +22,9 @@ class TestCase_Controller extends \TestCase
 			}
 		));
 		
+		// Requestをリセットしないと\Request::$mainが残ったままになって２度目以降の\Request::forge()からの\Request::is_hmvc()で問題になる
+		\Request::reset_request(true);
+		
 		// > テストから呼び出されるViewはなぜかAssetクラスが動いてくれないので、パス解決のエラー表示を無効にしておきます。 ( http://qiita.com/masahikoofjoyto/items/206e6f8d5b0aa7126678 )
 		\Config::load('asset', true, false, true);
 		\Config::set('asset.fail_silently', true);
@@ -31,9 +34,6 @@ class TestCase_Controller extends \TestCase
 	{
 		\Auth::logout();
 		test::clean();
-		
-		// Requestをリセットしないと\Request::$mainが残ったままになって２度目以降の\Request::forge()からの\Request::is_hmvc()で問題になる
-		\Request::reset_request(true);
 	}
 	
 	protected function emulate_logged_in($usertype = '')
