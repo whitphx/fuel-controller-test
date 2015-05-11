@@ -11,7 +11,7 @@ class TestCase_Controller extends \TestCase
 		// Response::redirect()のexitを回避する．
 		test::double('Fuel\Core\Response', array(
 			'redirect' => function($url = '', $method = 'location', $code = 302){
-				throw new TestRedirectException(sprintf('%s:%s:%s)', $url, $method, $code));
+				throw new TestRedirectException(sprintf('%s:%s:%s', $url, $method, $code));
 			}
 		));
 		
